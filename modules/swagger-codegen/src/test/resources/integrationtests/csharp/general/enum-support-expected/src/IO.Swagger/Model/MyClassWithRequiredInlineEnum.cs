@@ -31,53 +31,53 @@ namespace IO.Swagger.Model
     public partial class MyClassWithRequiredInlineEnum :  IEquatable<MyClassWithRequiredInlineEnum>, IValidatableObject
     {
         /// <summary>
-        /// Gets or Sets Days
+        /// Defines Days
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DaysEnum
         {
             
             /// <summary>
-            /// Enum Sun for "sun"
+            /// Enum Sun for value: sun
             /// </summary>
             [EnumMember(Value = "sun")]
-            Sun,
+            Sun = 1,
             
             /// <summary>
-            /// Enum Mon for "mon"
+            /// Enum Mon for value: mon
             /// </summary>
             [EnumMember(Value = "mon")]
-            Mon,
+            Mon = 2,
             
             /// <summary>
-            /// Enum Tue for "tue"
+            /// Enum Tue for value: tue
             /// </summary>
             [EnumMember(Value = "tue")]
-            Tue,
+            Tue = 3,
             
             /// <summary>
-            /// Enum Wed for "wed"
+            /// Enum Wed for value: wed
             /// </summary>
             [EnumMember(Value = "wed")]
-            Wed,
+            Wed = 4,
             
             /// <summary>
-            /// Enum Thu for "thu"
+            /// Enum Thu for value: thu
             /// </summary>
             [EnumMember(Value = "thu")]
-            Thu,
+            Thu = 5,
             
             /// <summary>
-            /// Enum Fri for "fri"
+            /// Enum Fri for value: fri
             /// </summary>
             [EnumMember(Value = "fri")]
-            Fri,
+            Fri = 6,
             
             /// <summary>
-            /// Enum Sat for "sat"
+            /// Enum Sat for value: sat
             /// </summary>
             [EnumMember(Value = "sat")]
-            Sat
+            Sat = 7
         }
 
         /// <summary>
@@ -93,22 +93,22 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MyClassWithRequiredInlineEnum" /> class.
         /// </summary>
-        /// <param name="Quarantine">Quarantine.</param>
-        /// <param name="Grayware">Grayware.</param>
-        /// <param name="Days">Days (required).</param>
-        public MyClassWithRequiredInlineEnum(bool? Quarantine = default(bool?), bool? Grayware = default(bool?), DaysEnum Days = default(DaysEnum))
+        /// <param name="quarantine">quarantine.</param>
+        /// <param name="grayware">grayware.</param>
+        /// <param name="days">days (required).</param>
+        public MyClassWithRequiredInlineEnum(bool? quarantine = default(bool?), bool? grayware = default(bool?), DaysEnum days = default(DaysEnum))
         {
-            // to ensure "Days" is required (not null)
-            if (Days == null)
+            // to ensure "days" is required (not null)
+            if (days == null)
             {
-                throw new InvalidDataException("Days is a required property for MyClassWithRequiredInlineEnum and cannot be null");
+                throw new InvalidDataException("days is a required property for MyClassWithRequiredInlineEnum and cannot be null");
             }
             else
             {
-                this.Days = Days;
+                this.Days = days;
             }
-            this.Quarantine = Quarantine;
-            this.Grayware = Grayware;
+            this.Quarantine = quarantine;
+            this.Grayware = grayware;
         }
         
         /// <summary>
@@ -143,7 +143,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

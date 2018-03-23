@@ -15,6 +15,7 @@ import { Inject, Injectable, Optional }                      from '@angular/core
 import { Http, Headers, URLSearchParams }                    from '@angular/http';
 import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { Response, ResponseContentType }                     from '@angular/http';
+import { CustomQueryEncoderHelper }                          from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 import '../rxjs-operators';
@@ -23,7 +24,6 @@ import { User } from '../model/user';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
-import { CustomQueryEncoderHelper }                          from '../encoder';
 
 
 @Injectable()
@@ -191,6 +191,7 @@ export class UserService {
      * Create user
      * This can only be done by the logged in user.
      * @param body Created user object
+     
      */
     public createUserWithHttpInfo(body: User, extraHttpRequestParams?: RequestOptionsArgs): Observable<Response> {
         if (body === null || body === undefined) {
@@ -204,7 +205,7 @@ export class UserService {
             'application/xml',
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
             headers.set("Accept", httpHeaderAcceptSelected);
         }
@@ -212,7 +213,7 @@ export class UserService {
         // to determine the Content-Type header
         let consumes: string[] = [
         ];
-        let httpContentTypeSelected:string = this.configuration.selectHeaderContentType(consumes);
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
             headers.set('Content-Type', httpContentTypeSelected);
         }
@@ -235,6 +236,7 @@ export class UserService {
      * Creates list of users with given input array
      * 
      * @param body List of user object
+     
      */
     public createUsersWithArrayInputWithHttpInfo(body: Array<User>, extraHttpRequestParams?: RequestOptionsArgs): Observable<Response> {
         if (body === null || body === undefined) {
@@ -248,7 +250,7 @@ export class UserService {
             'application/xml',
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
             headers.set("Accept", httpHeaderAcceptSelected);
         }
@@ -256,7 +258,7 @@ export class UserService {
         // to determine the Content-Type header
         let consumes: string[] = [
         ];
-        let httpContentTypeSelected:string = this.configuration.selectHeaderContentType(consumes);
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
             headers.set('Content-Type', httpContentTypeSelected);
         }
@@ -279,6 +281,7 @@ export class UserService {
      * Creates list of users with given input array
      * 
      * @param body List of user object
+     
      */
     public createUsersWithListInputWithHttpInfo(body: Array<User>, extraHttpRequestParams?: RequestOptionsArgs): Observable<Response> {
         if (body === null || body === undefined) {
@@ -292,7 +295,7 @@ export class UserService {
             'application/xml',
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
             headers.set("Accept", httpHeaderAcceptSelected);
         }
@@ -300,7 +303,7 @@ export class UserService {
         // to determine the Content-Type header
         let consumes: string[] = [
         ];
-        let httpContentTypeSelected:string = this.configuration.selectHeaderContentType(consumes);
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
             headers.set('Content-Type', httpContentTypeSelected);
         }
@@ -323,6 +326,7 @@ export class UserService {
      * Delete user
      * This can only be done by the logged in user.
      * @param username The name that needs to be deleted
+     
      */
     public deleteUserWithHttpInfo(username: string, extraHttpRequestParams?: RequestOptionsArgs): Observable<Response> {
         if (username === null || username === undefined) {
@@ -336,7 +340,7 @@ export class UserService {
             'application/xml',
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
             headers.set("Accept", httpHeaderAcceptSelected);
         }
@@ -362,6 +366,7 @@ export class UserService {
      * Get user by user name
      * 
      * @param username The name that needs to be fetched. Use user1 for testing. 
+     
      */
     public getUserByNameWithHttpInfo(username: string, extraHttpRequestParams?: RequestOptionsArgs): Observable<Response> {
         if (username === null || username === undefined) {
@@ -375,7 +380,7 @@ export class UserService {
             'application/xml',
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
             headers.set("Accept", httpHeaderAcceptSelected);
         }
@@ -402,6 +407,7 @@ export class UserService {
      * 
      * @param username The user name for login
      * @param password The password for login in clear text
+     
      */
     public loginUserWithHttpInfo(username: string, password: string, extraHttpRequestParams?: RequestOptionsArgs): Observable<Response> {
         if (username === null || username === undefined) {
@@ -426,7 +432,7 @@ export class UserService {
             'application/xml',
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
             headers.set("Accept", httpHeaderAcceptSelected);
         }
@@ -452,6 +458,7 @@ export class UserService {
     /**
      * Logs out current logged in user session
      * 
+     
      */
     public logoutUserWithHttpInfo(extraHttpRequestParams?: RequestOptionsArgs): Observable<Response> {
 
@@ -462,7 +469,7 @@ export class UserService {
             'application/xml',
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
             headers.set("Accept", httpHeaderAcceptSelected);
         }
@@ -489,6 +496,7 @@ export class UserService {
      * This can only be done by the logged in user.
      * @param username name that need to be deleted
      * @param body Updated user object
+     
      */
     public updateUserWithHttpInfo(username: string, body: User, extraHttpRequestParams?: RequestOptionsArgs): Observable<Response> {
         if (username === null || username === undefined) {
@@ -505,7 +513,7 @@ export class UserService {
             'application/xml',
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
             headers.set("Accept", httpHeaderAcceptSelected);
         }
@@ -513,7 +521,7 @@ export class UserService {
         // to determine the Content-Type header
         let consumes: string[] = [
         ];
-        let httpContentTypeSelected:string = this.configuration.selectHeaderContentType(consumes);
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
             headers.set('Content-Type', httpContentTypeSelected);
         }
