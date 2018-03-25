@@ -1,0 +1,38 @@
+{{>licenseInfo}}
+
+import { ServiceClient } from "ts-service-client";
+
+const BASE_PATH = "{{{basePath}}}".replace(/\/+$/, "");
+
+
+export module {{appName}}Types {
+    {{#models}}
+        {{#model}}{{#isEnum}}{{>modelEnum}}{{/isEnum}}{{^isEnum}}{{>modelGeneric}}{{/isEnum}}{{/model}}
+    {{/models}}
+}
+
+{{#apiInfo}}{{#apis}}{{#operations}}
+export class {{appName}} {
+    private client: ServiceClient;
+    constructor(baseUrl?: string) {
+        this.client = new ServiceClient(baseUrl || BASE_PATH);
+    }
+{{#operation}}
+
+    /**
+    * {{&notes}}
+    {{#summary}}
+    * @summary {{&summary}}
+    {{/summary}}
+    {{#allParams}}
+    * @param {{=<% %>=}}{<%dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+    {{/allParams}}
+    */
+    async {{nickname}}({{#allParams}}request: {{appName}}Types.{{dataType}}{{/allParams}}) {
+        const path = '{{{path}}}'; 
+        return this.client.{{httpMethod}}<{{appName}}Types.{{returnType}}>(path{{#allParams}}, request{{/allParams}});
+    } 
+{{/operation}}
+
+}
+{{/operations}}{{/apis}}{{/apiInfo}}

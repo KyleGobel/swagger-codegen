@@ -1,0 +1,26 @@
+{
+  "name": "{{npmName}}",
+  "version": "{{npmVersion}}",
+  "description": "Service client for {{npmName}}",
+  "author": "kg",
+  "keywords": [
+    "typescript",
+    "api-service-client",
+    "{{npmName}}"
+  ],
+  "license": "Unlicense",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts" : {
+    "build": "tsc --outDir dist/"
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "ts-service-client": "^1.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^2.7.2",
+    "ts-service-client": "^1.1.0"
+  }
+}
